@@ -1,0 +1,75 @@
+{
+  "workflow": {
+    "phases": [
+      {
+        "name": "requirements",
+        "duration": "30m",
+        "agents": ["po"],
+        "outputs": ["requirements.md"]
+      },
+      {
+        "name": "planning",
+        "duration": "30m",
+        "agents": ["pm"],
+        "dependencies": ["requirements"],
+        "outputs": ["sprint_plan.md"]
+      },
+      {
+        "name": "implementation",
+        "duration": "2h",
+        "agents": ["engineer"],
+        "dependencies": ["planning"],
+        "outputs": ["src/"]
+      },
+      {
+        "name": "testing",
+        "duration": "1h",
+        "agents": ["tester"],
+        "dependencies": ["implementation"],
+        "outputs": ["tests/"]
+      },
+      {
+        "name": "review",
+        "duration": "30m",
+        "agents": ["reviewer"],
+        "dependencies": ["implementation", "testing"],
+        "outputs": ["review_report.md"]
+      },
+      {
+        "name": "quality_assurance",
+        "duration": "30m",
+        "agents": ["qa"],
+        "dependencies": ["review"],
+        "outputs": ["qa_report.md"]
+      }
+    ]
+  },
+  "coordination": {
+    "sync_interval": "30m",
+    "communication_channel": "shared/PROJECT_PLAN.md",
+    "status_tracking": "enabled",
+    "auto_escalation": true
+  },
+  "resource_management": {
+    "token_budget": {
+      "total": 100000,
+      "per_agent": {
+        "po": 15000,
+        "pm": 10000,
+        "engineer": 30000,
+        "tester": 20000,
+        "qa": 10000,
+        "reviewer": 15000
+      }
+    },
+    "parallel_execution": {
+      "max_concurrent_agents": 3,
+      "priority_queue": true
+    }
+  },
+  "quality_gates": {
+    "code_coverage_threshold": 80,
+    "review_approval_required": true,
+    "qa_signoff_required": true
+  }
+}

@@ -1,0 +1,82 @@
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Claude settings (may contain sensitive data)
+.claude/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Build outputs
+dist/
+build/
+out/
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+
+# Agent outputs (collected by scripts)
+outputs/
+
+# Memory system
+memory/agents/*/
+!memory/agents/.gitkeep
+memory/shared/*
+!memory/shared/knowledge_base.md
+
+# Workspace temporary files
+workspaces/*/
+!workspaces/*/.gitkeep
+!workspaces/*/CLAUDE.md
+
+# Backup files
+*.bak
+*.backup
+
+# OS files
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# API keys and credentials
+*.key
+*.pem
+*.cert
+credentials.json
